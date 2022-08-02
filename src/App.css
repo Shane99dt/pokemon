@@ -2,10 +2,15 @@
   background-color: #81E6D9;
 }
 
+.btn-randomPokemon{
+  width: 18rem;
+}
+
 .card{
   background-color: transparent;
   border: 1px solid #E2E8F0;
   color: white;
+  width: 18rem;
 }
 
 #username, #password{
