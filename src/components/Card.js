@@ -10,8 +10,10 @@ const Card = (props) => {
           <span className="font-weight-bold">Types: </span>
           <ul className="card-text">
 
-            {props.pokemonTypes.map((item) => {
-              <li>{item.type.name}</li>
+            {props.pokemonTypes.map((item, i) => {
+              return(
+                <li key={i}>{item.type.name}</li>
+              )
             })}
 
           </ul>

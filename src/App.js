@@ -7,11 +7,6 @@ import './App.css'
 
 const App = () => {
   const [pokemon, setPokemon] = useState(null)
-  const [pokemonName, setPokemonName] = useState(null)
-  const [pokemonImage, setPokemonImage] = useState(null)
-  const [pokemonHeight, setPokemonHeight] = useState(null)
-  const [pokemonWeight, setPokemonWeight] = useState(null)
-  const [pokemonTypes, setPokemonTypes] = useState(null)
   const [isHome, setIsHome] = useState(true)
 
   useEffect(() => {
@@ -25,24 +20,9 @@ const App = () => {
   const fetchData = async () => {
     const request = await fetch(`https://pokeapi.co/api/v2/pokemon/${getRndInteger(1,151)}`)
     const response = await request.json()
-    console.log(response)
-
     setPokemon(response)
-    setPokemonName(response.name)
-    setPokemonHeight(response.height)
-    setPokemonWeight(response.weight)
-    setPokemonTypes(response.types)
-    setPokemonImage(response.sprites)
-    console.log(pokemon, "pokemon")
-    // console.log(pokemonName, "pokemon name")
   }
 
-  // setPokemon(pokemon)
-  // setPokemonName(pokemon.name)
-  // setPokemonHeight(pokemon.height)
-  // setPokemonWeight(pokemon.weight)
-  // setPokemonTypes(pokemon.types)
-  // setPokemonImage(pokemon.sprites)
 
   const handleClickHome = () => {
     setIsHome(true)
@@ -67,11 +47,11 @@ const App = () => {
       {isHome ? (
         <section className="d-flex flex-column align-items-center justify-content-center mt-5 gap-5">
           <Card
-            pokemonName = {pokemonName}
-            pokemonHeight = {pokemonHeight}
-            pokemonWeight = {pokemonWeight}
-            pokemonTypes = {pokemonTypes}
-            pokemonImage = {pokemonImage}
+            pokemonName = {pokemon.name}
+            pokemonHeight = {pokemon.height}
+            pokemonWeight = {pokemon.weight}
+            pokemonTypes = {pokemon.types}
+            pokemonImage = {pokemon.sprites}
           />
           <Button onClick={fetchData}/>
         </section>
