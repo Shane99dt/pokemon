@@ -10,17 +10,24 @@ const App = () => {
   const [isHome, setIsHome] = useState(true)
 
   useEffect(() => {
-    fetchData()
+    fetchData(1)
   }, [])
 
-  const getRndInteger = (min, max) => {
-    return Math.floor(Math.random() * (max - min + 1) ) + min;
-  }
 
-  const fetchData = async () => {
-    const request = await fetch(`https://pokeapi.co/api/v2/pokemon/${getRndInteger(1,151)}`)
+
+  const fetchData = async (id) => {
+    const request = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
     const response = await request.json()
     setPokemon(response)
+  }
+
+  const handleChangeId = () => {
+    const max = 151;
+    const min = 1;
+    const getRndInteger = Math.floor(Math.random() * (max - min + 1) ) + min;
+
+
+    fetchData(getRndInteger)
   }
 
 
@@ -33,7 +40,11 @@ const App = () => {
   }
 
   if (!pokemon) {
-    return null;
+    return(
+      <div>
+        <h1>Loading...</h1>
+      </div>
+    )
   }
 
   return(
@@ -53,7 +64,7 @@ const App = () => {
             pokemonTypes = {pokemon.types}
             pokemonImage = {pokemon.sprites}
           />
-          <Button onClick={fetchData}/>
+          <Button onClick={handleChangeId}/>
         </section>
       ) : (
         <LoginPage/>
